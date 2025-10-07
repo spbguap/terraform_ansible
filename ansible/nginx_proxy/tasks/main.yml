@@ -1,0 +1,8 @@
+---
+# tasks file for nginx_proxy
+- name: Копирование конфигурации прокси
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  when: "'vm1' in inventory_hostname" # Выполнится только тогда, когда в имени есть vm1
+  notify: "Nginx Reloader"
